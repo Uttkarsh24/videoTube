@@ -70,4 +70,13 @@ const registerUser = asyncHandler( async (req,res) => {
     )
 } )
 
+const  loginUser = asyncHandler( async (req,res)=>{
+    //req.bddy se data lao
+    //username and email based checking
+    //find kro user ki hi exist kr rha hai ki nhi
+    //password check kro ki sahi hai ki nhi
+    //access aur refresh token generate krke user ko bhejo
+    //bhejna via secure cookies se hai
+})
+
 export {registerUser}
