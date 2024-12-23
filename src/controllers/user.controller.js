@@ -24,9 +24,7 @@ const generateAccessAndRefreshToken = async(userId) => {
 const registerUser = asyncHandler( async (req,res) => {
 
     const {fullName , email, username ,password} = req.body;
-    //console.log("email:", email);
 
-    //checking if all fields have values in them
     if (
         [fullName,email,username,password].some((field)=>
             field?.trim()===""
@@ -35,7 +33,6 @@ const registerUser = asyncHandler( async (req,res) => {
         throw new ApiError(400,"all fields are required")
     }
 
-    //checking if user already exists
     const existedUser = await User.findOne({
         $or: [{ username },{ email }]
     })
@@ -45,7 +42,6 @@ const registerUser = asyncHandler( async (req,res) => {
     }
 
     const avatarLocalPath = req.files?.avatar[0]?.path;
-    //const coverImageLocalPath = req.files?.coverImage[0]?.path;
 
     let coverImageLocalPath;
     if(req.files && Array.isArray(req.files.coverImage) && req.files.coverImage.length > 0){
@@ -62,8 +58,6 @@ const registerUser = asyncHandler( async (req,res) => {
     if(!avatar){
         throw new ApiError(400,"Avatar file is required")
     }
-
-    //all checks done 
 
     const user = await User.create({
         fullName,
@@ -90,7 +84,6 @@ const registerUser = asyncHandler( async (req,res) => {
 const loginUser = asyncHandler(async (req, res) =>{
 
     const {email, username, password} = req.body
-    //console.log(email);
 
     if (!username && !email) {
         throw new ApiError(400, "username or email is required")
