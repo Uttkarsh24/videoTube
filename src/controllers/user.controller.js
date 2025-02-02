@@ -216,7 +216,7 @@ const updateAccountDetails = asyncHandler(async(req,res)=>{
 
     return res
     .status(200)
-    .json(200,user,"All fields Updated!!")
+    .json(new ApiResponse(200,user,"Account Details Updated Successfully!"))
 }); 
 
 const refreshAccessToken = asyncHandler(async(req,res)=>{
@@ -388,8 +388,6 @@ const getUserChannelProfile = asyncHandler(async(req,res)=>{
             }
         }
     ])
-
-    console.log(channel);
     
     if(!channel?.length){
         throw new ApiError(404,"Channel Not Found!")
